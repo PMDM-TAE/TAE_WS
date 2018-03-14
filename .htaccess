@@ -1,0 +1,13 @@
+# Turn rewrite engine on Options +FollowSymlinks
+<IfModule mod_rewrite.c>
+RewriteEngine on
+RewriteBase /
+php_value display_errors 1
+
+# map neat URL to internal URL
+RewriteRule ^Usuarios/list/$   RestController.php?view=all [nc,qsa]
+RewriteRule ^Usuarios/Id/([0-9]+)/$   RestController.php?view=id&id=$1 [nc,qsa]
+RewriteRule ^Usuarios/login/(.*)/(.*)/$   RestController.php?view=login&email=$1&pass=$2 [nc,qsa]
+RewriteRule ^Usuarios/editar/([0-9]+)/(.*)/(.*)/([0-1])/$   RestController.php?view=editar&id=$1&email=$2&pass=$3&activo=$4 [nc,qsa]
+
+</IfModule>
